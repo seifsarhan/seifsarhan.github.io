@@ -92,6 +92,7 @@
     layout();
     if (hz) scrollTo({ top: work.offsetTop, behavior: reduce ? 'auto' : 'smooth' });
     countCards();
+    workNav.reset();
   });
   const countCards = () => { $('#wcount').textContent = `${pad($$('.card:not([hidden])').length)} projects`; };
   countCards();
@@ -202,6 +203,43 @@
   $$('a', menu).forEach((a) => a.addEventListener('click', () => setMenu(false)));
   addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); mbtn.focus(); } });
 
+  /* swipe carousels for small screens (work grid + trophy cabinet) */
+  const carousel = (el, label) => {
+    const nav = document.createElement('div');
+    nav.className = 'cnav';
+    nav.innerHTML = `<span class="ccount" aria-live="polite"></span><button type="button" class="cbtn" data-dir="-1" aria-label="Previous ${label}">&larr;</button><button type="button" class="cbtn" data-dir="1" aria-label="Next ${label}">&rarr;</button>`;
+    el.after(nav);
+    el.tabIndex = 0;
+    const items = () => [...el.children].filter((c) => !c.hidden);
+    const padL = () => parseFloat(getComputedStyle(el).paddingLeft) || 0;
+    const current = () => {
+      const base = el.getBoundingClientRect().left + padL();
+      let best = 0, bd = Infinity;
+      items().forEach((c, i) => { const d = Math.abs(c.getBoundingClientRect().left - base); if (d < bd) { bd = d; best = i; } });
+      return best;
+    };
+    const update = () => {
+      const n = items().length, i = current();
+      $('.ccount', nav).innerHTML = `<b>${pad(i + 1)}</b> / ${pad(n)}`;
+      $$('.cbtn', nav)[0].disabled = i === 0; $$('.cbtn', nav)[1].disabled = i >= n - 1;
+    };
+    const go = (dir) => {
+      const xs = items(), t = xs[Math.max(0, Math.min(xs.length - 1, current() + dir))];
+      if (t) el.scrollTo({ left: el.scrollLeft + t.getBoundingClientRect().left - el.getBoundingClientRect().left - padL(), behavior: reduce ? 'auto' : 'smooth' });
+    };
+    nav.addEventListener('click', (e) => { const b = e.target.closest('.cbtn'); if (b) go(+b.dataset.dir); });
+    el.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') { e.preventDefault(); go(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } });
+    el.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+    addEventListener('resize', update);
+    update();
+    return { update, reset: () => { el.scrollLeft = 0; update(); } };
+  };
+  const workNav = carousel(track, 'project');
+  carousel($('#cabinet'), 'certificate');
+  // cards inside a sideways scroller should not wait for a vertical reveal
+  const narrowMQ = matchMedia('(max-width: 900px)');
+  if (narrowMQ.matches) $$('#cabinet .card').forEach((c) => c.removeAttribute('data-reveal'));
+
   /* reveals */
   const io = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
   $$('[data-reveal]').forEach((el, i) => { el.style.setProperty('--d', `${(i % 3) * 80}ms`); io.observe(el); });
@@ -237,6 +275,7 @@
     let theme = 'dark';
     for (const s of themed) { const r = s.getBoundingClientRect(); if (r.top <= 40 && r.bottom > 40) { theme = s.dataset.theme; break; } }
     hdr.classList.toggle('on-light', theme === 'light' && !menu.classList.contains('open'));
+    hdr.classList.toggle('scrolled', y > 60);
     // tuck the name away while scrolling down, bring it back on the way up
     if (Math.abs(y - lastY) > 2) hdr.classList.toggle('tuck', y > 160 && y > lastY && !menu.classList.contains('open'));
     // statement: words light up as you read down
