@@ -4,21 +4,20 @@ My developer portfolio, live at **https://seifsarhan.github.io**
 
 ![Portfolio preview](assets/og.jpg)
 
-- Hand-written WebGL particle field (no libraries): about 9,000 points that morph between a planet, a wave, a double helix, a lattice cube and a torus knot as you scroll, and react to the mouse
-- 3D-tilting project screens with glare, scroll reveals, a typed headline, magnetic buttons and a custom cursor
-- Project filters (React, Python / Flask, HTML · CSS · JS) and a details dialog for each project
-- Respects `prefers-reduced-motion`, works on phones, and has no build step
+- A topographic contour map drawn by hand in JavaScript (no libraries). Its contour lines drift, move with the page as you scroll and rise into a hill under your cursor
+- An F1 starting-lights intro, a pinned side-scrolling project grid that leans with your scroll speed, and statement text that lights up word by word
+- Project filters, a details view for each project, a work and education timeline, a certificates section with verify links, and a downloadable CV
+- Self-hosted fonts (Mona Sans and Bodoni Moda), no build step, works on phones and respects `prefers-reduced-motion`
 
 ## Edit it
 
-Everything you'd change lives at the top of [`js/main.js`](js/main.js):
+Everything you'd change lives in [`js/data.js`](js/data.js):
 
-- `CONFIG`: name, email, GitHub username, LinkedIn
-- `PROJECTS`: one entry per project (title, repo, live URL, stack, features). Put its screenshot at `assets/projects/<id>.webp`
+- `CONFIG`: name, contact details, CV path, agency link
+- `PROJECTS`: one entry per project. Put its screenshot at `assets/projects/<id>.webp`
+- `JOURNEY`, `EDUCATION`, `CERTS`, `SKILLS`: the timeline, certificates and toolbox
 
 ## Run locally
-
-Open `index.html`, or serve the folder:
 
 ```bash
 npx serve .

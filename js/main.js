@@ -1,156 +1,116 @@
-/* ------------------------------------------------------------------
-   Edit your details and projects here — the page renders from this.
-------------------------------------------------------------------- */
-const CONFIG = {
-  name: 'Seif Sarhan',
-  first: 'Seif',
-  role: 'Full-stack web developer',
-  location: 'Egypt',
-  email: 'seifsarhan1229@gmail.com',
-  github: 'seifsarhan',
-  linkedin: '', // e.g. 'https://www.linkedin.com/in/your-name'
-};
-
-const PROJECTS = [
-  {
-    id: 'lail', title: 'Lail Specialty Coffee', repo: 'lail-coffee', cat: 'react', bilingual: true,
-    live: 'https://lail-coffee-roastery.surge.sh',
-    kind: 'E-commerce storefront', stack: ['React 19', 'Vite', 'Context API', 'localStorage'],
-    blurb: 'A bilingual Arabic/English coffee roastery store with live search, quick-view product options, promo codes and a full three-step checkout.',
-    features: ['Instant Arabic (RTL) ↔ English (LTR) switch', 'Ctrl+K live search, category pills, roast filter and sorting', 'Quick view with weight pricing, grind selector and customer reviews', 'Cart with free-shipping bar and working promo codes', '3-step checkout with live card preview and printable invoice', 'Order tracking, wishlist and a coffee taste quiz'],
-  },
-  {
-    id: 'aurelia', title: 'Aurelia Luxury Estates', repo: 'aurelia-realty', cat: 'react', bilingual: true,
-    live: 'https://aurelia-realty.surge.sh',
-    kind: 'Real-estate platform', stack: ['React 19', 'Vite', 'i18n'],
-    blurb: 'An Arabic-first luxury property platform for Riyadh, Dubai, New Cairo and the North Coast, with smart filters, side-by-side compare and a mortgage calculator.',
-    features: ['Buy / rent search with city and property-type filters', 'Compare properties side by side', 'Mortgage and installment payment calculator', 'Book an in-person viewing or a 3D video tour', 'Advisors directory and ROI advisory section', 'Full Arabic and English interface'],
-  },
-  {
-    id: 'stockmate', title: 'StockMate', repo: 'stockmate', cat: 'python', bilingual: true,
-    live: 'https://stockmate-smart.surge.sh', liveLabel: 'Live preview',
-    kind: 'Inventory & stocktaking system', stack: ['Python', 'Flask', 'SQLAlchemy', 'Bootstrap 5', 'Chart.js', 'pytest'],
-    blurb: 'A bilingual inventory system for shop owners: a transactional stock ledger, a 7-step stocktaking reconciliation engine, and Excel/PDF reports.',
-    features: ['Live KPI dashboard with 14-day stock charts', 'Stock in / out with row locking and an immutable movement ledger', '7-step physical stocktaking with shortage / excess variance', '6 reports exported to Excel (.xlsx) and Arabic/English PDF', 'Owner setup wizard, settings and JSON backup / restore', 'Automated pytest suite covering 16 scenarios'],
-  },
-  {
-    id: 'eduguide', title: 'EduGuide', repo: 'eduguide', cat: 'python', bilingual: true,
-    live: '',
-    kind: 'University SaaS platform', stack: ['Python', 'Flask', 'MySQL / SQLite', 'Groq & Gemini AI', 'Paymob'],
-    blurb: 'A multi-university student platform with an AI academic advisor, CV optimizer and mock interviews, plus QR attendance, GPA tools and Egyptian payments.',
-    features: ['Separate student, instructor, university-admin and system-admin portals', 'AI advisor chat, CV optimizer and mock interviews (Groq + Gemini)', 'QR lecture check-in with automatic absence alerts', 'GPA calculator, study planner, quizzes and verified QR transcripts', 'Paymob card and Fawry payments with receipts', 'Per-university branding, CSRF protection and audit logs'],
-  },
-  {
-    id: 'synthera', title: 'SYNTH ERA', repo: 'synth-era-store', cat: 'react', bilingual: false,
-    live: '',
-    kind: 'Techwear store with AI try-on', stack: ['React 18', 'TypeScript', 'Vite', 'Gradio', 'Decart AI'],
-    blurb: 'A techwear brand store where shoppers try garments on with AI — upload a photo or go live — backed by three fallback try-on models.',
-    features: ['AI virtual try-on from a photo (Leffa, with IDM-VTON and Nymbo fallbacks)', 'Real-time video try-on through the Decart SDK', '“Smart X-Ray” view that reveals garment tech details', 'Hoodies, jackets, pants and tees with a lookbook', 'Pre-order flow and cart', 'Typed React components with TypeScript'],
-  },
-  {
-    id: 'arkadia', title: 'Arkadia Travel', repo: 'arkadia-travel', cat: 'vanilla', bilingual: false,
-    live: 'https://arkadia-travel-2026.surge.sh',
-    kind: 'Travel agency website', stack: ['HTML', 'CSS', 'JavaScript'],
-    blurb: 'A boutique luxury travel site with a destination explorer, package filters and a multi-step booking flow that prices the trip as you go.',
-    features: ['Destination explorer with detail modals and wishlist', 'Package listing with filters', 'Booking flow with live totals and promo codes', '“My Trips” drawer and booking receipts', 'FAQ, contact form and legal modals', 'Five pages built without a framework'],
-  },
-  {
-    id: 'aura', title: 'AURA Chronos', repo: 'aura-chronos', cat: 'vanilla', bilingual: false,
-    live: 'https://watchesaura.surge.sh',
-    kind: 'Luxury watch boutique', stack: ['HTML', 'CSS', 'JavaScript'],
-    blurb: 'A haute-horlogerie store with collections, product pages, cart and wishlist, currency switching and a full checkout — plus boutiques and a magazine.',
-    features: ['Collections and product detail pages', 'Cart, wishlist and currency switcher (EGP)', 'Checkout flow', 'Private viewing booking and services', 'Global boutiques and magazine pages', 'Eight pages, no framework'],
-  },
-  {
-    id: 'pawplace', title: 'The Paw Place', repo: 'paw-place', cat: 'vanilla', bilingual: true,
-    live: 'https://pawplace.surge.sh',
-    kind: 'Pet adoption & care center', stack: ['HTML', 'CSS', 'JavaScript'],
-    blurb: 'A pet rescue center in Alexandria: browse and adopt vaccinated cats and dogs, shop vet-approved supplies, book grooming or clinic care, and donate.',
-    features: ['Adoptable pets with detail pages and an adoption form', 'Supplies shop with cart and checkout', 'Grooming and vet services booking', 'Donations page and sign-in', 'Arabic / English switch', 'Intro video and twelve pages'],
-  },
-];
-
-const CATS = { all: 'All', react: 'React', python: 'Python · Flask', vanilla: 'HTML · CSS · JS' };
-
-/* ------------------------------------------------------------------ */
+/* UI for the portfolio. Projects and contact details live in js/data.js. */
 {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const host = (u) => (u ? u.replace(/^https?:\/\//, '') : 'local · Flask app');
+  const root = document.documentElement;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const repoUrl = (p) => (CONFIG.github ? `https://github.com/${CONFIG.github}/${p.repo}` : '');
+  const repoUrl = (p) => (CONFIG.github && p.repo ? `https://github.com/${CONFIG.github}/${p.repo}` : '');
   const arrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+  const pad = (n) => String(n).padStart(2, '0');
 
   /* identity */
   document.title = `${CONFIG.name} — ${CONFIG.role}`;
   $$('[data-name]').forEach((el) => (el.textContent = CONFIG.name));
   $('#year').textContent = new Date().getFullYear();
+  const [first, ...rest] = CONFIG.name.split(' ');
+  const rows = $$('.name .row');
+  rows[0].textContent = first; rows[1].textContent = rest.join(' ') || first;
+  $('.name').setAttribute('aria-label', CONFIG.name);
 
-  /* hero name split into letters for the reveal */
-  const big = $('#bigname');
-  big.innerHTML = [...CONFIG.first].map((ch, i) => `<span class="ch" style="--i:${i}">${esc(ch)}</span>`).join('');
-  big.setAttribute('aria-label', CONFIG.name);
+  /* split hero name into letters */
+  let li = 0;
+  $$('[data-split]').forEach((row) => {
+    row.innerHTML = [...row.textContent].map((ch) => `<span class="ch" style="--i:${li++}">${ch === ' ' ? '&nbsp;' : esc(ch)}</span>`).join('');
+  });
 
-  /* stats */
-  const stats = [
-    [PROJECTS.length, 'projects built end to end'],
-    [PROJECTS.filter((p) => p.live).length, 'live demos online'],
-    [PROJECTS.filter((p) => p.bilingual).length, 'bilingual Arabic / English builds'],
+  /* telemetry */
+  const tele = [
+    ['Projects', PROJECTS.length],
+    ['Live demos', PROJECTS.filter((p) => p.live).length],
+    ['Bilingual builds', PROJECTS.filter((p) => p.bilingual).length],
+    ['Certificates', CERTS.length],
   ];
-  $('#stats').innerHTML = stats.map(([n, l]) => `<li><b data-count="${n}">${n}</b><span>${esc(l)}</span></li>`).join('');
-  $('#workcount').textContent = PROJECTS.length;
+  $('#tele').innerHTML = tele.map(([l, n]) => `<li><small>${esc(l)}</small><b data-count="${n}">${pad(n)}</b></li>`).join('');
 
-  /* filters */
-  const used = new Set(PROJECTS.map((p) => p.cat));
-  $('#filters').innerHTML = Object.entries(CATS).filter(([k]) => k === 'all' || used.has(k))
-    .map(([k, l], i) => `<button type="button" class="chip${i ? '' : ' on'}" data-cat="${k}" aria-pressed="${!i}">${esc(l)}</button>`).join('');
+  /* ticker */
+  const tech = ['React', 'TypeScript', 'Flask', 'Python', 'Vite', 'JavaScript', 'SQLAlchemy', 'Arabic RTL', 'Gemini', 'Groq', 'Paymob', 'pytest', 'Chart.js', 'MySQL'];
+  const run = tech.map((t) => `<span>${esc(t)}</span>`).join('');
+  $('#ticker').innerHTML = run + run;
 
-  /* project cards */
+  /* statement words */
+  const stmt = $('#stmt');
+  const wrapWords = (node) => {
+    [...node.childNodes].forEach((n) => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) frag.append(part);
+          else { const s = document.createElement('span'); s.className = 'w'; s.textContent = part; frag.append(s); }
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1) { n.classList.add('w'); }
+    });
+  };
+  wrapWords(stmt);
+  const words = $$('.w', stmt);
+
+  /* projects */
+  const status = (p) => (p.live ? `<span class="status live"><i></i>Live</span>` : `<span class="status"><i></i>Runs locally</span>`);
   const card = (p) => `
-    <article class="card" data-cat="${p.cat}" data-reveal>
-      <button type="button" class="shot" data-open="${p.id}" aria-label="Open details for ${esc(p.title)}">
-        <span class="frame">
-          <span class="bar"><i></i><i></i><i></i><em>${esc(host(p.live))}</em></span>
+    <article class="card" data-cat="${p.cat}">
+      <div class="card-in">
+        <button type="button" class="shot" data-open="${p.id}" data-cursor aria-label="Open details for ${esc(p.title)}">
           <img src="assets/projects/${p.id}.webp" alt="Home page of ${esc(p.title)}" loading="lazy" width="1280" height="800">
-        </span>
-        <span class="glare"></span>
-      </button>
-      <div class="meta">
-        <p class="kind">${esc(p.kind)}</p>
-        <h3>${esc(p.title)}</h3>
-        <p class="blurb">${esc(p.blurb)}</p>
-        <ul class="tags">${p.stack.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
-        <div class="links">
-          ${p.live ? `<a class="btn sm solid" href="${esc(p.live)}" target="_blank" rel="noopener">${esc(p.liveLabel || 'Live demo')} ${arrow}</a>` : ''}
-          ${repoUrl(p) ? `<a class="btn sm" href="${esc(repoUrl(p))}" target="_blank" rel="noopener">Code ${arrow}</a>` : ''}
-          <button type="button" class="btn sm ghost" data-open="${p.id}">Details</button>
+        </button>
+        <div class="card-body">
+          <div class="card-top">${status(p)}<span class="status">${esc(CATS[p.cat] || '')}</span></div>
+          <h3>${esc(p.title)}</h3>
+          <p class="kind">${esc(p.kind)}</p>
+          <p class="blurb">${esc(p.blurb)}</p>
+          <ul class="tags">${p.stack.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
+          <div class="links">
+            ${p.live ? `<a class="btn lime sm" href="${esc(p.live)}" target="_blank" rel="noopener">${esc(p.liveLabel || 'Live demo')} ${arrow}</a>` : ''}
+            ${repoUrl(p) ? `<a class="btn sm" href="${esc(repoUrl(p))}" target="_blank" rel="noopener">Code ${arrow}</a>` : ''}
+            <button type="button" class="btn sm" data-open="${p.id}">Details</button>
+          </div>
         </div>
       </div>
     </article>`;
-  $('#grid').innerHTML = PROJECTS.map(card).join('');
+  const track = $('#track');
+  track.innerHTML = PROJECTS.map(card).join('');
 
+  const used = new Set(PROJECTS.map((p) => p.cat));
+  $('#filters').innerHTML = Object.entries(CATS).filter(([k]) => k === 'all' || used.has(k))
+    .map(([k, l], i) => `<button type="button" class="chip${i ? '' : ' on'}" data-cat="${k}" aria-pressed="${!i}">${esc(l)}</button>`).join('');
   $('#filters').addEventListener('click', (e) => {
     const b = e.target.closest('.chip'); if (!b) return;
     $$('.chip').forEach((c) => { c.classList.toggle('on', c === b); c.setAttribute('aria-pressed', c === b); });
     $$('.card').forEach((c) => { c.hidden = !(b.dataset.cat === 'all' || c.dataset.cat === b.dataset.cat); });
+    layout();
+    if (hz) scrollTo({ top: work.offsetTop, behavior: reduce ? 'auto' : 'smooth' });
+    countCards();
   });
+  const countCards = () => { $('#wcount').textContent = `${pad($$('.card:not([hidden])').length)} projects`; };
+  countCards();
 
-  /* details modal */
+  /* modal */
   const modal = $('#modal');
   const open = (id) => {
     const p = PROJECTS.find((x) => x.id === id); if (!p) return;
     $('#modal-body').innerHTML = `
       <img src="assets/projects/${p.id}.webp" alt="Home page of ${esc(p.title)}" width="1280" height="800">
       <div class="mtext">
-        <p class="kind">${esc(p.kind)}</p>
+        ${status(p)}
         <h3 id="modal-title">${esc(p.title)}</h3>
+        <p class="kind">${esc(p.kind)}</p>
         <p>${esc(p.blurb)}</p>
         <ul class="feats">${p.features.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
         <ul class="tags">${p.stack.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
         <div class="links">
-          ${p.live ? `<a class="btn sm solid" href="${esc(p.live)}" target="_blank" rel="noopener">${esc(p.liveLabel || 'Live demo')} ${arrow}</a>` : '<span class="note">Runs locally — demo on request</span>'}
+          ${p.live ? `<a class="btn lime sm" href="${esc(p.live)}" target="_blank" rel="noopener">${esc(p.liveLabel || 'Live demo')} ${arrow}</a>` : '<span class="note">Runs locally — demo on request</span>'}
           ${repoUrl(p) ? `<a class="btn sm" href="${esc(repoUrl(p))}" target="_blank" rel="noopener">Source code ${arrow}</a>` : ''}
         </div>
       </div>`;
@@ -160,30 +120,70 @@ const CATS = { all: 'All', react: 'React', python: 'Python · Flask', vanilla: '
   $('#modal-close').addEventListener('click', () => modal.close());
   modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
 
-  /* skills */
-  const SKILLS = [
-    ['Frontend', ['HTML5', 'CSS3', 'JavaScript', 'React', 'TypeScript', 'Vite', 'Responsive & RTL layouts']],
-    ['Backend', ['Python', 'Flask', 'SQLAlchemy', 'REST endpoints', 'Jinja2', 'pytest']],
-    ['Data', ['SQLite', 'MySQL', 'PostgreSQL', 'Excel & PDF exports']],
-    ['Integrations', ['Groq', 'Gemini', 'Gradio', 'Decart AI', 'Paymob & Fawry', 'Chart.js']],
-    ['Shipping', ['Git & GitHub', 'Surge', 'Docker', 'Render']],
-  ];
-  $('#skilllist').innerHTML = SKILLS.map(([g, items]) => `
-    <div class="sgroup" data-reveal><h3>${esc(g)}</h3><ul class="tags big">${items.map((s) => `<li>${esc(s)}</li>`).join('')}</ul></div>`).join('');
+  /* toolbox */
+  $('#tower').innerHTML = SKILLS.map(([g, items]) => `<div class="trow" data-reveal><h3>${esc(g)}</h3><ul class="tags">${items.map((s) => `<li>${esc(s)}</li>`).join('')}</ul></div>`).join('');
 
-  /* marquee */
-  const tech = ['React', 'TypeScript', 'Flask', 'Python', 'Vite', 'JavaScript', 'SQLAlchemy', 'Bootstrap', 'Chart.js', 'Gemini', 'Groq', 'Arabic RTL', 'MySQL', 'pytest'];
-  const run = tech.map((t) => `<span>${esc(t)}</span>`).join('');
-  $('#marquee').innerHTML = `<div class="track">${run}${run}</div>`;
+  /* CV, agency and identity links */
+  $$('.cvbtn').forEach((a) => { if (CONFIG.cv) a.href = CONFIG.cv; else a.remove(); });
+  $('#fullName').textContent = CONFIG.fullName || CONFIG.name;
+  $('#locPill').textContent = `${CONFIG.location}${CONFIG.remote ? ' · Open to remote' : ''}`;
+  if (CONFIG.agency && CONFIG.agency.url) {
+    [$('#agencyPill'), $('#agencyLink')].forEach((a) => { a.href = CONFIG.agency.url; a.target = '_blank'; a.rel = 'noopener'; });
+    $('#agencyLink').textContent = CONFIG.agency.name; $('#agencyPill').textContent = `Founder, ${CONFIG.agency.name}`;
+  }
+
+  /* journey */
+  $('#laps').innerHTML = JOURNEY.map((j) => `
+    <li class="lap" data-reveal>
+      <span class="when">${esc(j.when)}</span>
+      <div class="what">
+        <h3>${esc(j.role)}</h3>
+        <p class="org">${j.url ? `<a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.org)}</a>` : esc(j.org)}${j.note ? ` <span>· ${esc(j.note)}</span>` : ''}</p>
+        ${j.points.length ? `<ul>${j.points.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+      </div>
+    </li>`).join('');
+  $('#edu').innerHTML = `<p class="pill">Education</p><h3>${esc(EDUCATION.degree)}</h3><p class="org">${esc(EDUCATION.school)} · ${esc(EDUCATION.year)}</p><ul class="tags">${EDUCATION.coursework.map((c) => `<li>${esc(c)}</li>`).join('')}</ul>`;
+
+  /* certificates */
+  $('#cabinet').innerHTML = CERTS.map((c) => `
+    <article class="card trophy" data-reveal>
+      <div class="card-in">
+        ${c.img
+          ? `<button type="button" class="shot cert" data-cert="${c.id}" data-cursor aria-label="View ${esc(c.title)} certificate"><img src="${esc(c.img)}" alt="${esc(c.title)} certificate" loading="lazy"></button>`
+          : `<div class="shot cert blank" aria-hidden="true"><span>Diploma</span><small>${esc(c.issuer)}</small></div>`}
+        <div class="card-body">
+          <div class="card-top"><span class="status live"><i></i>${esc(c.date)}</span></div>
+          <h3>${esc(c.title)}</h3>
+          <p class="kind">${esc(c.issuer)}</p>
+          ${c.note ? `<p class="blurb">${esc(c.note)}</p>` : ''}
+          <div class="links">
+            ${c.verify ? `<a class="btn sm" href="${esc(c.verify)}" target="_blank" rel="noopener">Verify ${arrow}</a>` : ''}
+            ${c.img ? `<button type="button" class="btn sm" data-cert="${c.id}">View</button>` : ''}
+          </div>
+        </div>
+      </div>
+    </article>`).join('');
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-cert]'); if (!b) return;
+    const c = CERTS.find((x) => x.id === b.dataset.cert); if (!c) return;
+    $('#modal-body').innerHTML = `<figure class="certview"><img src="${esc(c.img)}" alt="${esc(c.title)} certificate"><figcaption><h3 id="modal-title">${esc(c.title)}</h3><p class="kind">${esc(c.issuer)} · ${esc(c.date)}</p>${c.verify ? `<a class="btn lime sm" href="${esc(c.verify)}" target="_blank" rel="noopener">Verify ${arrow}</a>` : ''}</figcaption></figure>`;
+    if (modal.showModal) modal.showModal(); else modal.setAttribute('open', '');
+  });
 
   /* contact */
   const links = [
     CONFIG.email && ['Email', `mailto:${CONFIG.email}`],
+    CONFIG.whatsapp && ['WhatsApp', `https://wa.me/${CONFIG.whatsapp}`],
     CONFIG.github && ['GitHub', `https://github.com/${CONFIG.github}`],
     CONFIG.linkedin && ['LinkedIn', CONFIG.linkedin],
+    CONFIG.cv && ['Download CV', CONFIG.cv],
   ].filter(Boolean);
-  $('#socials').innerHTML = links.map(([l, h]) => `<a class="btn" href="${esc(h)}" ${h.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>${esc(l)} ${arrow}</a>`).join('');
-  $('#mail').textContent = CONFIG.email;
+  const linkHtml = (cls) => links.map(([l, h]) => `<a class="${cls}" href="${esc(h)}" ${h.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}${h === CONFIG.cv ? ' download' : ''}>${esc(l)} ${cls ? arrow : ''}</a>`).join(cls ? '' : ' · ');
+  $('#socials').innerHTML = linkHtml('btn magnet');
+  const firstSocial = $('#socials a'); if (firstSocial) firstSocial.classList.add('lime');
+  $('#menuLinks').innerHTML = linkHtml('');
+  $('#mail').textContent = CONFIG.email; $('#menuMail').textContent = CONFIG.email;
+  if (CONFIG.phone) $('#phoneLine').innerHTML = `or call <a href="tel:${esc(CONFIG.phone.replace(/\s/g, ''))}">${esc(CONFIG.phone)}</a>`;
   $('#copy').addEventListener('click', async () => {
     const b = $('#copy');
     try { await navigator.clipboard.writeText(CONFIG.email); b.textContent = 'Copied'; }
@@ -191,90 +191,108 @@ const CATS = { all: 'All', react: 'React', python: 'Python · Flask', vanilla: '
     setTimeout(() => (b.textContent = 'Copy'), 1800);
   });
 
-  /* rotating words */
-  const words = ['luxury storefronts', 'bilingual RTL apps', 'Flask platforms', 'AI try-on experiences', 'inventory systems'];
-  const rot = $('#rotator');
-  if (!reduce) {
-    let w = 0, c = words[0].length, del = true;
-    const tick = () => {
-      const word = words[w];
-      c += del ? -1 : 1;
-      rot.textContent = word.slice(0, c);
-      let wait = del ? 34 : 64;
-      if (!del && c === word.length) { del = true; wait = 2000; }
-      else if (del && c === 0) { del = false; w = (w + 1) % words.length; wait = 280; }
-      setTimeout(tick, wait);
-    };
-    setTimeout(tick, 3800);
-  }
-
-  /* reveal on scroll */
-  const io = new IntersectionObserver((entries) => entries.forEach((en) => {
-    if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
-  }), { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
-  $$('[data-reveal]').forEach((el, i) => { el.style.setProperty('--d', `${(i % 4) * 70}ms`); io.observe(el); });
-
-  /* count-up stats */
-  const cio = new IntersectionObserver((entries) => entries.forEach((en) => {
-    if (!en.isIntersecting) return;
-    const el = en.target, n = +el.dataset.count, t0 = performance.now();
-    const step = (t) => { const k = Math.min(1, (t - t0) / 1100); el.textContent = Math.round(n * (1 - (1 - k) ** 3)); if (k < 1) requestAnimationFrame(step); };
-    if (!reduce) requestAnimationFrame(step);
-    cio.unobserve(el);
-  }), { threshold: 0.6 });
-  $$('[data-count]').forEach((el) => cio.observe(el));
-
-  /* header: shadow when scrolled, active section link, progress bar */
-  const head = $('#top'), bar = $('#progress');
-  const navLinks = $$('.nav a[href^="#"]');
-  const onScroll = () => {
-    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
-    head.classList.toggle('solid', y > 40);
-    bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
-    let cur = '';
-    $$('main > section[id]').forEach((s) => { if (s.getBoundingClientRect().top < innerHeight * 0.45) cur = s.id; });
-    navLinks.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === `#${cur}`));
+  /* menu */
+  const menu = $('#menu'), mbtn = $('#menuBtn');
+  const setMenu = (on) => {
+    menu.classList.toggle('open', on); root.classList.toggle('menu-open', on);
+    menu.setAttribute('aria-hidden', !on); mbtn.setAttribute('aria-expanded', on); mbtn.textContent = on ? 'Close' : 'Menu';
+    if (on) setTimeout(() => $('a', menu).focus(), 300);
   };
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  mbtn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  $$('a', menu).forEach((a) => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); mbtn.focus(); } });
 
-  /* mobile menu */
-  const tog = $('#menu');
-  tog.addEventListener('click', () => { const o = head.classList.toggle('open'); tog.setAttribute('aria-expanded', o); });
-  $$('.nav a').forEach((a) => a.addEventListener('click', () => { head.classList.remove('open'); tog.setAttribute('aria-expanded', 'false'); }));
+  /* reveals */
+  const io = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+  $$('[data-reveal]').forEach((el, i) => { el.style.setProperty('--d', `${(i % 3) * 80}ms`); io.observe(el); });
 
-  /* desktop-only: 3D tilt cards, magnetic buttons, custom cursor */
+  /* count-up telemetry */
+  const countUp = () => $$('[data-count]').forEach((el) => {
+    const n = +el.dataset.count, t0 = performance.now();
+    const step = (t) => { const k = Math.min(1, (t - t0) / 1300); el.textContent = pad(Math.round(n * (1 - (1 - k) ** 4))); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  });
+
+  /* pinned horizontal work track */
+  const work = $('#work'), bar = $('#wbar');
+  let hz = false, dist = 0, x = 0, skew = 0, lastY = scrollY;
+  function layout() {
+    hz = innerWidth > 900 && !reduce;
+    work.classList.toggle('hz', hz);
+    if (!hz) { work.style.height = ''; track.style.transform = ''; return; }
+    track.style.transform = 'none';
+    dist = Math.max(0, track.scrollWidth - innerWidth);
+    work.style.height = `${innerHeight + dist}px`;
+  }
+  addEventListener('resize', layout);
+  layout();
+
+  /* scroll-driven bits, one rAF loop */
+  const hdr = $('#hdr');
+  const themed = $$('[data-theme]');
+  const frags = $$('[data-speed]');
+  function frame() {
+    const y = scrollY, vh = innerHeight;
+    // header colour follows the section under it
+    let theme = 'dark';
+    for (const s of themed) { const r = s.getBoundingClientRect(); if (r.top <= 40 && r.bottom > 40) { theme = s.dataset.theme; break; } }
+    hdr.classList.toggle('on-light', theme === 'light' && !menu.classList.contains('open'));
+    // tuck the name away while scrolling down, bring it back on the way up
+    if (Math.abs(y - lastY) > 2) hdr.classList.toggle('tuck', y > 160 && y > lastY && !menu.classList.contains('open'));
+    // statement: words light up as you read down
+    const r = stmt.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.25)));
+    const lit = reduce ? words.length : Math.round(p * words.length * 1.1);
+    words.forEach((w, i) => w.classList.toggle('lit', i < lit));
+    // horizontal track + speed skew
+    if (hz) {
+      const wr = work.getBoundingClientRect();
+      const k = dist ? Math.min(1, Math.max(0, -wr.top / dist)) : 0;
+      x = -k * dist;
+      const v = y - lastY;
+      skew += (Math.max(-7, Math.min(7, v * 0.12)) - skew) * 0.14;
+      track.style.transform = `translate3d(${x.toFixed(1)}px,0,0) skewX(${(-skew).toFixed(2)}deg)`;
+      bar.style.transform = `scaleX(${k})`;
+    }
+    // floating fragments
+    if (!reduce) frags.forEach((f) => { const fr = f.getBoundingClientRect(); f.style.setProperty('--py', `${((fr.top + fr.height / 2 - vh / 2) * +f.dataset.speed).toFixed(1)}px`); });
+    lastY = y;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  /* desktop: cursor + magnetic buttons */
   if (fine && !reduce) {
-    $$('.shot').forEach((el) => {
-      el.addEventListener('pointermove', (e) => {
-        const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-        el.style.setProperty('--rx', `${(0.5 - y) * 10}deg`); el.style.setProperty('--ry', `${(x - 0.5) * 12}deg`);
-        el.style.setProperty('--gx', `${x * 100}%`); el.style.setProperty('--gy', `${y * 100}%`);
-      });
-      el.addEventListener('pointerleave', () => { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
-    });
+    root.classList.add('cur');
+    const dot = $('#dot');
+    let mx = -100, my = -100, dx = -100, dy = -100;
+    addEventListener('pointermove', (e) => { mx = e.clientX; my = e.clientY; }, { passive: true });
+    document.addEventListener('pointerover', (e) => dot.classList.toggle('big', !!e.target.closest('[data-cursor]')));
+    const follow = () => { dx += (mx - dx) * 0.2; dy += (my - dy) * 0.2; dot.style.transform = `translate(${dx}px, ${dy}px)`; requestAnimationFrame(follow); };
+    follow();
     $$('.magnet').forEach((el) => {
-      el.addEventListener('pointermove', (e) => {
-        const r = el.getBoundingClientRect();
-        el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.25}px, ${(e.clientY - r.top - r.height / 2) * 0.35}px)`;
-      });
+      el.addEventListener('pointermove', (e) => { const r = el.getBoundingClientRect(); el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.22}px, ${(e.clientY - r.top - r.height / 2) * 0.3}px)`; });
       el.addEventListener('pointerleave', () => (el.style.transform = ''));
     });
-    const dot = $('#cursor'), ring = $('#ring');
-    let mx = -100, my = -100, rx = -100, ry = -100;
-    addEventListener('pointermove', (e) => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px, ${my}px)`; }, { passive: true });
-    document.addEventListener('pointerover', (e) => ring.classList.toggle('big', !!e.target.closest('a, button')));
-    const follow = () => { rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16; ring.style.transform = `translate(${rx}px, ${ry}px)`; requestAnimationFrame(follow); };
-    document.documentElement.classList.add('cursor-on');
-    follow();
   }
 
-  /* loader */
-  const loader = $('#loader'), pct = $('#pct');
-  const done = () => { document.documentElement.classList.add('ready'); setTimeout(() => loader.remove(), 900); };
-  if (reduce) done();
+  /* lights out: five reds, then go */
+  const lights = $('#lights');
+  let started = false;
+  const go = () => {
+    if (started) return; started = true;
+    root.classList.add('go');
+    countUp();
+    if (lights) { lights.classList.add('out'); setTimeout(() => lights.remove(), 1100); }
+    try { sessionStorage.setItem('lightsOut', '1'); } catch (e) { /* storage unavailable */ }
+  };
+  let seen = false;
+  try { seen = sessionStorage.getItem('lightsOut') === '1'; } catch (e) { /* storage unavailable */ }
+  if (!lights || reduce || seen) { if (lights) lights.remove(); go(); }
   else {
-    const t0 = performance.now();
-    const step = (t) => { const k = Math.min(1, (t - t0) / 1100); pct.textContent = Math.round(100 * (1 - (1 - k) ** 2)); if (k < 1) requestAnimationFrame(step); else done(); };
-    requestAnimationFrame(step);
+    const pods = $$('i', lights);
+    pods.forEach((p, i) => setTimeout(() => p.classList.add('on'), 300 + i * 360));
+    setTimeout(() => { pods.forEach((p) => p.classList.remove('on')); setTimeout(go, 220); }, 300 + 5 * 360 + 650);
+    lights.addEventListener('click', go);
   }
 }
