@@ -100,7 +100,7 @@ const EDUCATION = {
 };
 
 const CERTS = [
-  { id: 'hubspot', title: 'Digital Marketing Certified', issuer: 'HubSpot Academy', date: 'Nov 2026', img: 'assets/certs/hubspot.webp', verify: '',
+  { id: 'hubspot', title: 'Digital Marketing Certified', issuer: 'HubSpot Academy', date: 'Nov 2026', img: 'assets/certs/hubspot.webp', verify: 'https://app-eu1.hubspot.com/academy/achievements/tc14pkcc/en/1/seif-sarhan/digital-marketing',
     note: 'SEO-friendly content, website optimization, social media strategy, video, advertising and measuring results — valid until Dec 2028' },
   { id: 'bapm', title: 'Business Analysis & Process Management', issuer: 'Coursera Project Network', date: 'Dec 2024', img: 'assets/certs/bapm.webp', verify: 'https://coursera.org/verify/9QKDMZVJ85UT' },
   { id: 'hsbc', title: 'Global Banking & Markets Job Simulation', issuer: 'HSBC · Forage', date: 'Dec 2024', img: 'assets/certs/hsbc.webp', verify: '',
